@@ -33,7 +33,6 @@ class SearchImage extends ContentComponent {
   // ez a metódus megjelenít egy képet
   displayImage(data) {
     this.clearErrors();
-    this.clearContent();
     const image = document.createElement('img');
     // a data.message tömbböl egy véletlenszerű elemet kiválasztunk
     image.src = data.message[Math.floor(Math.random() * data.message.length)];
@@ -47,12 +46,19 @@ class SearchImage extends ContentComponent {
     <form class="dog-search">
   <span class="search-icon"></span>
   <input type="text" id="dogSearchInput">
+  <input type="text" id="imageNumberInput" placeholder="1">
   <button>Search</button>
 </form>`;
     document.querySelector('#header').insertAdjacentHTML('beforeend', markup);
     // az arrow functionnek nincs saját this kulcsszava, tehát az arrow function-ön belül a this ugyanazt fogja jelenteni mint azon kívül (a class-t amiben vagyunk)
     document.querySelector('.dog-search button').addEventListener('click', (event) => {
       event.preventDefault();
+      let count = parseInt(document.querySelector('#imageNumberInput').value);
+      Math.floor(count);
+      if (isNaN(count)) {
+        count = 1;
+      }
+      this.clearContent();
       const searchTerm = document.querySelector('#dogSearchInput').value;
       // mivel a getImages egy async method, ezért ez is promise-al tér vissza
       // emiatt a promise objecten, amit a getImages visszaad elérhető a .then() metódus
