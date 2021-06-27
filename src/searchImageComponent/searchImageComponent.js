@@ -24,7 +24,7 @@ class SearchImage extends ContentComponent {
     } else if (dogbreed.length === 2) {
       urlString = `https://dog.ceo/api/breed/${dogbreed[1]}/${dogbreed[0]}/images`;
     }
-    const response = await fetch(urlString);
+    const response = await fetch(urlString.toLowerCase());
     const data = await response.json();
     // a data változó egy objectet tartalmazó tömb
     return data;
