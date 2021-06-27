@@ -41,4 +41,10 @@ input {
   object-fit: cover;
   max-width: 100%;
   margin: 1rem;
+  transition: 2s opacity ease-out;
+  opacity: 0.25;
+}
+
+#content img.yall-loaded {
+  opacity: 1;
 }

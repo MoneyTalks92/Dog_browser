@@ -25,7 +25,7 @@ const config = {
       // each rule is an object itself
       {
         //the test defines the file type in regex format
-        test: /\.(png|jpg|svg)$/,
+        test: /\.(png|jpg|svg|gif)$/,
         // here we can specify which loader should be used
         // for the given file type
         use: {
@@ -55,7 +55,7 @@ const config = {
         use: [
           // css-loader will read the css from the file
           // if we use style-loader instead of MiniCssExtractPlugin will create style tags in our html
-          MiniCssExtractPlugin.loader, 'css-loader' , 'postcss-loader' // npm install --save-dev css-loader style-loader
+          MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader' // npm install --save-dev css-loader style-loader
         ]
       },
       {
@@ -73,8 +73,8 @@ const config = {
           loader: 'babel-loader', // npm install --save-dev @babel/core babel-loader
           options: {
             // env: es6 to es5
-            presets: [ '@babel/preset-env' ], // npm install --save-dev @babel/preset-env babel-plugin-transform-class-properties
-            plugins: [ '@babel/plugin-transform-runtime']
+            presets: ['@babel/preset-env'], // npm install --save-dev @babel/preset-env babel-plugin-transform-class-properties
+            plugins: ['@babel/plugin-transform-runtime']
           }
         }
       },
@@ -95,7 +95,7 @@ const config = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: './src/img/', to: './img/'}
+        { from: './src/img/', to: './img/' }
       ]
     }),
     new MiniCssExtractPlugin({
@@ -110,15 +110,15 @@ module.exports = (env, argv) => {
   // https://webpack.js.org/concepts/mode/ --> production enables lot of plugins
   if (argv.mode === 'development') {
 
-    config.devServer =  { //  npm install --save-dev webpack-dev-server
+    config.devServer = { //  npm install --save-dev webpack-dev-server
       contentBase: path.resolve(__dirname, './dist'),
       index: 'index.html',
       port: 9000
     },
-    // config.watch = true;
-    config.optimization = {
-      minimize: false,
-    };
+      // config.watch = true;
+      config.optimization = {
+        minimize: false,
+      };
     config.devtool = 'inline-source-map';
     // config.performance = {
     //   hints: 'warning'
@@ -129,8 +129,8 @@ module.exports = (env, argv) => {
     config.optimization = {
       minimize: true,
       minimizer: [
-      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
-      // `...`
+        // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+        // `...`
         new TerserPlugin(),
         new CssMinimizerPlugin(),
       ],
