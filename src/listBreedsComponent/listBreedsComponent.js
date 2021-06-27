@@ -41,6 +41,15 @@ class ListBreeds extends ContentComponent {
     }
   }
 
+  getResults() {
+    if (localStorage.getItem('dogs') === null) {
+      this.getFullList();
+    } else {
+      localStorage.setItem('dogs', JSON.stringify(dogs));
+      const dogs = JSON.parse(localStorage.getItem('dogs'));
+    }
+  }
+
   render() {
     const button = document.createElement('button');
     button.classList.add('list-button');
